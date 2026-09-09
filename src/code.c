@@ -2,670 +2,400 @@
 //char * AUTHOR_AUTHORSHIP = (char *) "I acknowledge that I have worked on this assignment independently, except where explicitly noted and referenced. Any collaboration or use of external resources has been properly cited. I am fully aware of the consequences of academic dishonesty and agree to abide by the university's academic integrity policy. I understand the seriousness and implications of plagiarism.";
 
 
-// --------- FUNCTION IMPLEMENTATIONS ------------
+#include <stddef.h>
 #include <stdio.h>
-//#include <cstdint>
 
 // ============================================================
-// CSCI 232 - DEBUGGING LAB
-//
-// General rule:
-//
-// DO NOT GUESS THE ANSWER.
-//
-// For every challenge:
-//   1. Read the code.
-//   2. Uncomment the indicated code.
-//   3. Set a breakpoint.
-//   4. Run the debugger.
-//   5. Inspect Variables.
-//   6. Use Step Over / Step Into as requested.
-//   7. Use Watch when requested.
-//   8. Change the final return value to your observed answer.
-//   9. Run the unit tests.
-//
-// The return value is intentionally 0 before the student
-// completes the challenge.
+// Node structure — used in challenges 03-06
 // ============================================================
 
 
+typedef struct Node {
+    int value;
+    struct Node *nextPtr;
+} Node;
+
+void  swap(int *a, int *b);
+char* find_last_char(char *s);
+void  link_three(Node *a, Node *b, Node *c);
+void  remove_middle(Node *a, Node *b, Node *c);
+void  remove_last(Node *b);
+void  remove_first(Node *a);
+void  swap_ptrs(int **a, int **b);
+void  nullify(int **pp);
+void  assign_bytes(long long *n);
+int   sum_chain(Node *head);
+
+
+
+void challenge01(void);
+void challenge02(void);
+void challenge03(void);
+void challenge04(void);
+void challenge05(void);
+void challenge06(void);
+void challenge07(void);
+void challenge08(void);
+void challenge09(void);
+void challenge10(void);
+
+
+
+
 // ============================================================
-// CHALLENGE 01
-// Variables + Breakpoint
-// ============================================================
-//
-// Summary
-//
-// Learn to stop the program at a breakpoint and inspect
-// local variables.
-//
-// TASK:
-//
-// 1. Set a breakpoint on the line containing "int z".
-// 2. Run the debugger.
-// 3. Look at x and y in Variables.
-// 4. Use Step Over.
-// 5. Observe the value of z.
-// 6. Change "return 0" to return the value of z.
-//
-// Expected final form:
-//
-//     return <your observed value>;
+//  PART 1 — IMPLEMENTATIONS
+//  Write your function implementations below.
 // ============================================================
 
-int challenge01()
+
+// ============================================================
+// CHALLENGE 01 — swap via pointers
+// ============================================================
+//
+// Write a function that swaps the VALUES of two integers.
+// Receives two int pointers.
+//
+// Example:
+//   int a = 5, b = 3;
+//   swap(&a, &b);
+//   // a == 3,  b == 5
+//
+// HINT:
+//   You need a temporary variable.
+//   Dereference the pointers to reach the values.
+// ============================================================
+
+void swap(int *a, int *b)
 {
-    int x = 7;
-    int y = 3;
-
-    // int z = x * y + 2;
-
-    return 0;
+    // TODO
 }
 
 
 // ============================================================
-// CHALLENGE 02
-// Step Over
+// CHALLENGE 02 — find last character in a string
 // ============================================================
 //
-// Summary
+// Walk the string using pointer arithmetic.
+// Return a pointer to the LAST character before '\0'.
+// Return NULL if the string is empty.
 //
-// Practice executing one statement at a time.
+// Example:
+//   char str[] = "hello";
+//   char *p = find_last_char(str);
+//   // *p == 'o'
+//   // p  == str + 4
 //
-// TASK:
+// HINT:
+//   Check *(s + 1) to know when to stop.
+//   Do NOT use array indexing [ ].
+// ============================================================
+
+char* find_last_char(char *s)
+{
+    // TODO
+    return NULL;
+}
+
+
+// ============================================================
+// CHALLENGE 03 — link three nodes:  a -> b -> c -> NULL
+// ============================================================
 //
-// 1. Uncomment all three statements.
-// 2. Set a breakpoint before the first statement.
-// 3. Use Step Over.
-// 4. Watch the value of x after EACH statement.
-// 5. Return the final value of x.
+// Connect three Node structs in order.
+//
+// Node structure:
+//   typedef struct Node {
+//       int value;
+//       struct Node *nextPtr;
+//   } Node;
+//
+// HINT:
+//   Use the arrow operator:  a->nextPtr = ...
+// ============================================================
+
+void link_three(Node *a, Node *b, Node *c)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 04 — remove the middle node
+//
+//   Before:  a -> b -> c -> NULL
+//   After:   a -> c -> NULL
+//            b disconnected (b->nextPtr == NULL)
+//
+// HINT:
+//   Two assignments needed.
+// ============================================================
+
+void remove_middle(Node *a, Node *b, Node *c)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 05 — remove the last node
+//
+//   Before:  a -> b -> c -> NULL
+//   After:   a -> b -> NULL
+//
+// Note: only b is needed to solve this.
+// ============================================================
+
+void remove_last(Node *b)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 06 — detach the first node
+//
+//   Before:  a -> b -> c -> NULL
+//   After:   a -> NULL
+//            b -> c -> NULL  (unchanged)
+//
+// Note: only a is needed to solve this.
+// ============================================================
+
+void remove_first(Node *a)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 07 — swap two POINTERS using double pointers
+// ============================================================
+//
+// Different from challenge 01.
+// Here you swap what two pointers POINT TO, not the values.
+//
+// Example:
+//   int x = 10, y = 20;
+//   int *p = &x, *q = &y;
+//   swap_ptrs(&p, &q);
+//   // p now points to y  (*p == 20)
+//   // q now points to x  (*q == 10)
+//   // x == 10 and y == 20 — UNCHANGED
+//
+// HINT:
+//   Temporary variable type is int*.
+// ============================================================
+
+void swap_ptrs(int **a, int **b)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 08 — nullify a pointer via double pointer
+// ============================================================
+//
+// Set the pointer that pp points to — to NULL.
+//
+// Example:
+//   int x = 5;
+//   int *p = &x;
+//   nullify(&p);
+//   // p  == NULL
+//   // x  == 5  (unchanged)
 //
 // IMPORTANT:
-//
-// Do not calculate the answer only on paper.
-// The purpose is to practice observing program state.
+//   If you only had int *p and wrote p = NULL inside a function,
+//   the caller's p would be unchanged.
+//   That is WHY we pass int **pp.
 // ============================================================
 
-int challenge02()
+void nullify(int **pp)
 {
-    int x = 4;
+    // TODO
+}
 
-    // x = x * 3;
-    // x -= 5;
-    // x *= 2;
 
+// ============================================================
+// CHALLENGE 09 — assign bytes 1..8 via cast pointer
+// ============================================================
+//
+// A long long is exactly 8 bytes.
+// Access those bytes one by one using a cast pointer.
+//
+// Example:
+//   long long n = 0;
+//   assign_bytes(&n);
+//   // byte 0 == 1, byte 1 == 2, ..., byte 7 == 8
+//
+// HINT:
+//   Cast n to unsigned char*.
+//   p[i]  is identical to  *(p + i).
+//   Because p is unsigned char*, each step is exactly 1 byte.
+//   This is the same technique as the crème de la crème example.
+// ============================================================
+
+void assign_bytes(long long *n)
+{
+    // TODO
+}
+
+
+// ============================================================
+// CHALLENGE 10 — traverse and sum
+// ============================================================
+//
+// Follow nextPtr from head until NULL.
+// Return the sum of all value fields.
+//
+// Example:
+//   a(1) -> b(2) -> c(3) -> NULL
+//   sum_chain(&a) returns 6
+//
+// HINT:
+//   Node *cur = head;
+//   while (cur != NULL) { ... }
+// ============================================================
+
+int sum_chain(Node *head)
+{
+    // TODO
     return 0;
 }
 
 
 // ============================================================
-// CHALLENGE 03
-// Watch
-// ============================================================
+//  PART 2 — CHALLENGES
 //
-// Summary
+//  For each challenge:
+//  1. Set up variables on the stack.
+//  2. Call your function.
+//  3. Use TEST_ASSERT_EQUAL / TEST_ASSERT_NULL /
+//     TEST_ASSERT_EQUAL_PTR to verify the result.
 //
-// Learn how to use Watch to follow variables while the
-// program executes.
-//
-// TASK:
-//
-// 1. Uncomment the three statements.
-// 2. Add x and y to Watch.
-// 3. Set a breakpoint before the first statement.
-// 4. Use Step Over one statement at a time.
-// 5. Observe how BOTH variables change.
-// 6. Return x + y after all three statements.
-//
-// IMPORTANT:
-//
-// Watch x and y instead of relying only on Variables.
+//  The challenge is COMPLETE when all assertions pass.
 // ============================================================
 
-int challenge03()
+
+void challenge01(void)
 {
-    int x = 3;
-    int y = 7;
+    int a = 5, b = 3;
+    int *pa = &a;
+    int *pb = &b;
 
-    // x = x + y;
-    // y = x - y;
-    // x = x - y;
+    swap(pa, pb);
 
-    return 0;
+    TEST_ASSERT_EQUAL(3, a);
+    TEST_ASSERT_EQUAL(5, b);
 }
 
 
-// ============================================================
-// CHALLENGE 04
-// Global vs Local Variable
-// ============================================================
-//
-// Summary
-//
-// Learn that a local variable can have the same name as
-// a global variable.
-//
-// TASK:
-//
-// 1. Set a breakpoint on the first commented statement.
-// 2. Uncomment BOTH statements.
-// 3. Inspect "value" in Variables.
-// 4. Step Over.
-// 5. Inspect value
-// 6. Return the sum of the final value.
-//
-
-// ============================================================
-
-int value = 10;
-
-int challenge04()
+void challenge02(void)
 {
-    int value = 25;
-
-    // value += 5;
-
-    return 0;
+    // TODO
+    // Hint:
+    //   char str[] = "hello";
+    //   char *p = find_last_char(str);
+    //   TEST_ASSERT_EQUAL('o', *p);
+    //   TEST_ASSERT_EQUAL_PTR(str + 4, p);
+    //
+    // Also test the empty string case:
+    //   char empty[] = "";
+    //   TEST_ASSERT_NULL(find_last_char(empty));
 }
 
 
-// ============================================================
-// CHALLENGE 05
-// Shadowing
-// ============================================================
-//
-// Summary
-//
-// Practice understanding which variable exists in the
-// current scope.
-//
-// TASK:
-//
-// 1. Uncomment the statement inside the inner block.
-// 2. Set a breakpoint on that statement.
-// 3. Look at the different x variables.
-// 4. Step Over.
-// 5. Continue execution.
-// 6. Determine the final values.
-// 7. Return:
-//
-//       outer x + inner x
-//
-// IMPORTANT:
-//
-// There are multiple variables named x.
-// The debugger should help you determine which one
-// is currently active.
-// ============================================================
-
-int challenge05()
+void challenge03(void)
 {
-    int x = 10;
-
-    {
-        int x = 30;
-
-        // x += 5;
-    }
-
-    return 0;
+    // TODO
+    // Hint:
+    //   Node a, b, c;
+    //   a.value = 1; a.nextPtr = NULL;
+    //   b.value = 2; b.nextPtr = NULL;
+    //   c.value = 3; c.nextPtr = NULL;
+    //
+    //   link_three(&a, &b, &c);
+    //
+    //   TEST_ASSERT_EQUAL_PTR(&b, a.nextPtr);
+    //   TEST_ASSERT_EQUAL_PTR(&c, b.nextPtr);
+    //   TEST_ASSERT_NULL(c.nextPtr);
 }
 
 
-// ============================================================
-// CHALLENGE 06
-// Casting
-// ============================================================
-//
-// Summary
-//
-// Observe the difference between integer arithmetic and
-// floating-point arithmetic.
-//
-// TASK:
-//
-// 1. Uncomment both declarations.
-// 2. Set a breakpoint before them.
-// 3. Inspect a and b.
-// 4. Step Over the first statement.
-// 5. Step Over the second statement.
-// 6. Observe the difference between integer division and
-//    floating-point division.
-// 7. Return the integer value of result1 * 10 + result2.
-//
-// NOTE:
-//
-// The goal is not advanced mathematics.
-// The goal is to observe what the debugger shows you.
-// ============================================================
-
-int challenge06()
+void challenge04(void)
 {
-    int a = 7;
-    int b = 2;
-
-    // int result1 = a / b;
-    // double result2 = (double)(a) / b;
-
-    return 0;
+    // TODO
+    // Hint: build a->b->c first, then remove_middle
+    // Check: a->nextPtr == &c
+    //        b->nextPtr == NULL
 }
 
 
-// ============================================================
-// CHALLENGE 07
-// Pointer Basics
-// ============================================================
-//
-// Summary
-//
-// Understand:
-//
-//     &x     -> address of x
-//     y      -> address stored in y
-//     *y     -> value located at that address
-//
-// TASK:
-//
-// 1. Uncomment the pointer code.
-// 2. Set a breakpoint on "*y = 4".
-// 3. Before executing the line, inspect:
-//
-//       x
-//       y
-//       *y
-//
-// 4. Use Step Over.
-// 5. Inspect x, y and *y again.
-// 6. Return the FINAL value of x.
-//
-// IMPORTANT:
-//
-// The important observation is:
-//
-//       y did NOT change.
-//       x DID change.
-//       *y represents the value stored at x's address.
-// ============================================================
-
-int challenge07()
+void challenge05(void)
 {
-    int x = 2;
-
-    // int *y = &x;
-    // *y = 4;
-
-    return 0;
+    // TODO
+    // Hint: build a->b->c first, then remove_last(&b)
+    // Check: b->nextPtr == NULL
+    //        a->nextPtr == &b  (unchanged)
 }
 
 
-// ============================================================
-// CHALLENGE 08
-// Array + Pointer Dereference
-// ============================================================
-//
-// Summary
-//
-// Understand that an array name can be used as an address
-// of its first element.
-//
-// TASK:
-//
-// 1. Uncomment the pointer statements.
-// 2. Set a breakpoint before the first statement.
-// 3. Add p and *(p + 3) to Watch.
-// 4. Use Step Over.
-// 5. Inspect:
-//
-//       p
-//       *p
-//       *(p + 1)
-//       *(p + 2)
-//       *(p + 3)
-//
-// 6. Return the value of *(p + 3).
-//
-// IMPORTANT:
-//
-// The purpose is to understand:
-//
-//       p
-//       *p
-//       *(p + 1)
-//
-// These are NOT the same thing.
-// ============================================================
-
-int challenge08()
+void challenge06(void)
 {
-    int values[] = {10, 20, 30, 40, 50};
-
-    // int *p = values;
-    // int result = *(p + 3);
-
-    return 0;
+    // TODO
+    // Hint: build a->b->c first, then remove_first(&a)
+    // Check: a->nextPtr == NULL
+    //        b->nextPtr == &c  (unchanged)
 }
 
 
-// ============================================================
-// CHALLENGE 09
-// Pointer Arithmetic
-// ============================================================
-//
-// Summary
-//
-// Observe how pointer arithmetic moves between array
-// elements.
-//
-// TASK:
-//
-// 1. Uncomment the pointer statements.
-// 2. Set a breakpoint before "int *q".
-// 3. Watch:
-//
-//       p
-//       q
-//       *p
-//       *q
-//
-// 4. Step Over.
-// 5. Compare the addresses stored in p and q.
-// 6. Determine the value stored at q.
-// 7. Return the value of *q.
-//
-// IMPORTANT:
-//
-// Do NOT assume:
-//
-//       p + 1 = one byte later
-//
-// Pointer arithmetic advances according to the pointed-to
-// type.
-// ============================================================
-
-int challenge09()
+void challenge07(void)
 {
-    int values[] = {11, 22, 33, 44};
-
-    // int *p = values;
-    // int *q = p + 2;
-
-    return 0;
+    // TODO
+    // Hint:
+    //   int x = 10, y = 20;
+    //   int *p = &x, *q = &y;
+    //   swap_ptrs(&p, &q);
+    //   TEST_ASSERT_EQUAL_PTR(&y, p);
+    //   TEST_ASSERT_EQUAL_PTR(&x, q);
+    //   TEST_ASSERT_EQUAL(10, x);  // unchanged
+    //   TEST_ASSERT_EQUAL(20, y);  // unchanged
 }
 
 
-// ============================================================
-// CHALLENGE 10
-// Pointer to Pointer
-// ============================================================
-//
-// Summary
-//
-// Understand:
-//
-//       pp -> p -> x
-//
-// TASK:
-//
-// 1. Uncomment the pointer-to-pointer code.
-// 2. Set a breakpoint before "**pp = 42".
-// 3. Inspect:
-//
-//       x
-//       p
-//       *p
-//       pp
-//       *pp
-//       **pp
-//
-// 4. Step Over.
-// 5. Inspect all values again.
-// 6. Return the final value of x.
-//
-// IMPORTANT:
-//
-// The important concept is the chain:
-//
-//       pp
-//        |
-//        v
-//        p
-//        |
-//        v
-//        x
-// ============================================================
-
-int challenge10()
+void challenge08(void)
 {
-    int x = 5;
-    int *p = &x;
-
-    // int **pp = &p;
-    // **pp = 42;
-
-    return 0;
+    // TODO
+    // Hint:
+    //   int x = 5;
+    //   int *p = &x;
+    //   nullify(&p);
+    //   TEST_ASSERT_NULL(p);
+    //   TEST_ASSERT_EQUAL(5, x);  // unchanged
 }
 
 
-// ============================================================
-// CHALLENGE 11
-// Step Into + Step Out
-// ============================================================
-//
-// Summary
-//
-// Practice entering a function with Step Into and leaving
-// it with Step Out.
-//
-// TASK:
-//
-// 1. Uncomment the call to add().
-// 2. Set a breakpoint on the call.
-// 3. Use Step Into.
-// 4. Inspect a and b inside add().
-// 5. Step through the return.
-// 6. Use Step Out if necessary.
-// 7. Return the result.
-//
-// IMPORTANT:
-//
-// Observe that the debugger moves from:
-//
-//       challenge11()
-//             |
-//             v
-//           add()
-// ============================================================
-
-int add(int a, int b)
+void challenge09(void)
 {
-    return a + b;
-}
-
-int challenge11()
-{
-    int x = 7;
-
-    // int result = add(x, 5);
-
-    return 0;
+    // TODO
+    // Hint:
+    //   long long n = 0;
+    //   assign_bytes(&n);
+    //   unsigned char *p = (unsigned char *)&n;
+    //   TEST_ASSERT_EQUAL(1, p[0]);
+    //   TEST_ASSERT_EQUAL(8, p[7]);
 }
 
 
-// ============================================================
-// CHALLENGE 12
-// Call Stack
-// ============================================================
-//
-// Summary
-//
-// Learn to read the Call Stack when several functions
-// are active.
-//
-// TASK:
-//
-// 1. Uncomment the call to calculate().
-// 2. Set a breakpoint inside transform().
-// 3. Use Step Into to reach transform().
-// 4. Open Call Stack.
-// 5. Identify:
-//
-//       transform()
-//       calculate()
-//       challenge12()
-//       main()
-//
-// 6. Inspect the variables in the current stack frame.
-// 7. Step Out.
-// 8. Return the final result.
-//
-// IMPORTANT:
-//
-// The Call Stack shows HOW the program reached the current
-// function.
-// ============================================================
-
-int transform(int x)
+void challenge10(void)
 {
-    return x * 3;
-}
-
-int calculate(int x)
-{
-    return transform(x + 2);
-}
-
-int challenge12()
-{
-    // int result = calculate(4);
-
-    return 0;
-}
-
-
-// ============================================================
-// CHALLENGE 13
-// Recursion + Call Stack
-// ============================================================
-//
-// Summary
-//
-// Practice using the Call Stack with recursion.
-//
-// This is intentionally NOT a normal factorial.
-//
-// The recursive function performs a left shift and XOR.
-// The answer should be discovered by debugging.
-//
-// TASK:
-//
-// 1. Uncomment the recursive call.
-// 2. Set a breakpoint inside mystery().
-// 3. Run mystery(4).
-// 4. Use Step Into repeatedly.
-// 5. Watch the Call Stack grow.
-// 6. Observe the value of n and previous.
-// 7. Use Step Out while returning from recursion.
-// 8. Determine the final result.
-// 9. Replace return 0 with your observed result.
-//
-// IMPORTANT:
-//
-// Do not calculate the result first.
-// Follow the recursive calls using the debugger.
-//
-// Bitwise operations:
-//
-//       <<   left shift
-//       ^    XOR
-// ============================================================
-
-int mystery(int n)
-{
-    if (n <= 1)
-        return 1;
-
-    // int previous = mystery(n - 1);
-    // return (previous << 1) ^ n;
-
-    return 0;
-}
-
-int challenge13()
-{
-    // int result = mystery(4);
-
-    return 0;
-}
-
-
-// ============================================================
-// CHALLENGE 14
-// BOSS CHALLENGE
-//
-// Global variable
-// Local variable
-// Array
-// Pointer
-// Pointer arithmetic
-// Function calls
-// Recursion
-// Call Stack
-// Watch
-// Step Into
-// Step Over
-// Step Out
-// ============================================================
-//
-// Summary
-//
-// This challenge combines the major skills from the lab.
-//
-// TASK:
-//
-// 1. Uncomment the call in challenge14().
-// 2. Set a breakpoint in transformData().
-// 3. Use Step Into.
-// 4. Add these expressions to Watch where appropriate:
-//
-//       n
-//       p
-//       *p
-//
-// 5. Observe the Call Stack.
-// 6. Follow the recursive calls.
-// 7. Pay attention to:
-//
-//       p + n
-//       *(p + n)
-//
-// 8. Use Step Out as the recursive calls return.
-// 9. Determine the final result.
-// 10. Replace return 0 with your observed result.
-//
-// IMPORTANT:
-//
-// Do not try to solve this by guessing.
-// The purpose of the challenge is to make you use the
-// debugger to understand the execution.
-// ============================================================
-
-int transformData(int *p, int n)
-{
-    if (n == 0)
-        return *p;
-
-    // int value = *(p + n);
-    // return transformData(p, n - 1) + value;
-
-    return 0;
-}
-
-int challenge14()
-{
-    int data[] = {4, 7, 2, 9};
-
-    // int result = transformData(data, 3);
-
-    return 0;
+    // TODO
+    // Hint:
+    //   Node a, b, c;
+    //   a.value = 1; a.nextPtr = NULL;
+    //   b.value = 2; b.nextPtr = NULL;
+    //   c.value = 3; c.nextPtr = NULL;
+    //   link_three(&a, &b, &c);
+    //   TEST_ASSERT_EQUAL(6, sum_chain(&a));
 }

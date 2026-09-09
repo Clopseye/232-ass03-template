@@ -15,10 +15,6 @@ int challenge07();
 int challenge08();
 int challenge09();
 int challenge10();
-int challenge11();
-int challenge12();
-int challenge13();
-int challenge14();
 
 int main()
 {
@@ -33,13 +29,7 @@ int main()
 	challenge08();
 	challenge09();
 	challenge10();
-	challenge11();
-	challenge12();
-	challenge13();
-	challenge14();
-	//int x = getZero();
 
-	//printf("%d", x);
 
 	getchar();
     return 0;
