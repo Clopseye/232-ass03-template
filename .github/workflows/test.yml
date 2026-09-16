@@ -49,6 +49,7 @@ jobs:
         gcc -Wall -m32 -Isrc -Ilib \
             src/code.c src/tests.c src/unity.c \
             tests/tests.o \
+            -o run_tests
 
     - name: Execute Test Binary
       run: |
