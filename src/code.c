@@ -30,7 +30,7 @@ int   sum_chain(Node *headPtr);
 
 
 // ============================================================
-//  PART 1 — IMPLEMENTATIONS
+//  PART 1 — IMPLEMENTATIONS 
 //  Implement every function below.
 //  Do NOT modify function signatures.
 // ============================================================
