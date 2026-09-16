@@ -22,8 +22,8 @@ obj/code.o: src/code.c | obj
 obj/tests.o: src/tests.c | obj
 	$(CC) $(CFLAGS) -c src/tests.c -o obj/tests.o
 
-obj/unity.o: lib/unity.c | obj
-	$(CC) $(CFLAGS) -c lib/unity.c -o obj/unity.o
+obj/unity.o: src/unity.c | obj
+	$(CC) $(CFLAGS) -c src/unity.c -o obj/unity.o
 
 obj:
 	mkdir -p obj
