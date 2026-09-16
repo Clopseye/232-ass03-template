@@ -16,5 +16,9 @@
         //"titleBar.activeBackground": "#eeff0081", // Fioletowy dla Backendu
         //"statusBar.background": "#451e77",
         //"titleBar.inactiveBackground": "#eeff0081"
-    }
+    },
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/lib"
+    ]
 }

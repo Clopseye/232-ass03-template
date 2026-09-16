@@ -1,28 +1,32 @@
-CC = gcc 
-# The -g flag is essential for the debugger (F5 in VS Code) 
-# The -Isrc flag allows easy inclusion of header files 
-CFLAGS = -Wall -g -Isrc 
- 
-# Name of the target executable file 
-TARGET = bin/main.exe 
- 
-# Object files are placed in the obj/ folder 
-OBJS = obj/main.o obj/code.o 
- 
-all: $(TARGET) 
- 
-# Linking the program into the bin/ folder 
-$(TARGET): $(OBJS) | bin 
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) 
-bin: 
-	md bin 
- 
-# Compiling main.c -> obj/main.o 
-obj/main.o: src/main.c | obj 
-	$(CC) $(CFLAGS) -c src/main.c -o obj/main.o 
-obj: 
-	md obj 
+CC     = gcc
+CFLAGS = -Wall -g -Isrc -Ilib
 
-# Compiling code.c -> obj/code.o 
-obj/code.o: src/code.c 
+TARGET = bin/main.exe
+
+OBJS = obj/main.o obj/code.o obj/tests.o obj/unity.o
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS) | bin
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+
+bin:
+	mkdir -p bin
+
+obj/main.o: src/main.c | obj
+	$(CC) $(CFLAGS) -c src/main.c -o obj/main.o
+
+obj/code.o: src/code.c | obj
 	$(CC) $(CFLAGS) -c src/code.c -o obj/code.o
+
+obj/tests.o: src/tests.c | obj
+	$(CC) $(CFLAGS) -c src/tests.c -o obj/tests.o
+
+obj/unity.o: lib/unity.c | obj
+	$(CC) $(CFLAGS) -c lib/unity.c -o obj/unity.o
+
+obj:
+	mkdir -p obj
+
+clean:
+	rm -rf obj bin
