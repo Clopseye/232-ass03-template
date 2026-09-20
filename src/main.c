@@ -62,7 +62,3 @@ int main(void)
 //  Add any manual experiments below.
 //  This file is NOT used by CI.
 // ============================================================
-
-// char *AUTHOR_NAME       = "Ty Gonder";
-// char *AUTHOR_AUTHORSHIP = "I acknowledge that I have worked on this
-// assignment independently...";
