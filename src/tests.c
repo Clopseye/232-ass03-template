@@ -46,6 +46,11 @@ int   sum_chain(Node *headPtr);
 
 void test_swap_basic(void)
 {
+    int a = 3, b = 5;
+    int aRes = b, bRes = a;
+    swap(&a, &b);
+    TEST_ASSERT_EQUAL(bRes, b);
+    TEST_ASSERT_EQUAL(aRes, a);
     // TODO
 }
 
@@ -60,6 +65,11 @@ void test_swap_basic(void)
 
 void test_swap_equal(void)
 {
+    int a = 5, b = 5;
+    int aRes = b, bRes = a;
+    swap(&a, &b);
+    TEST_ASSERT_EQUAL(bRes, b);
+    TEST_ASSERT_EQUAL(aRes, a);
     // TODO
 }
 
@@ -74,6 +84,10 @@ void test_swap_equal(void)
 
 void test_find_last_basic(void)
 {
+    char str[] = "hello";
+    char *resultPtr = find_last_char(str);
+    TEST_ASSERT_TRUE(*resultPtr == 'o');
+    TEST_ASSERT_TRUE(resultPtr == &str[4]);
     // TODO
 }
 
@@ -88,6 +102,10 @@ void test_find_last_basic(void)
 
 void test_find_last_single(void)
 {
+    char str[] = "o";
+    char *resultPtr = find_last_char(str);
+    TEST_ASSERT_TRUE(*resultPtr == 'o');
+    TEST_ASSERT_TRUE(resultPtr == &str);
     // TODO
 }
 
@@ -101,6 +119,9 @@ void test_find_last_single(void)
 
 void test_find_last_empty(void)
 {
+    char str[] = "\0";
+    char *resultPtr = find_last_char(str);
+    TEST_ASSERT_NULL(resultPtr);
     // TODO
 }
 
@@ -118,6 +139,17 @@ void test_find_last_empty(void)
 
 void test_link_three_chain(void)
 {
+    Node a, b, c;
+    
+    a.value = 10;
+    b.value= 20;
+    c.value = 30;
+
+    link_three(&a, &b, &c);
+
+    TEST_ASSERT_EQUAL_PTR(&b, a.nextPtr);
+    TEST_ASSERT_EQUAL_PTR(&c, b.nextPtr);
+    TEST_ASSERT_NULL(c.nextPtr);
     // TODO
 }
 
@@ -134,6 +166,17 @@ void test_link_three_chain(void)
 
 void test_remove_middle_reconnects(void)
 {
+    Node a, b, c;
+
+    a.value = 10;
+    b.value = 20;
+    c.value = 30;
+
+    link_three(&a, &b, &c);
+    remove_middle(&a, &b, &c);
+
+    TEST_ASSERT_EQUAL_PTR(&c, a.nextPtr);
+    TEST_ASSERT_NULL(b.nextPtr);
     // TODO
 }
 
@@ -150,6 +193,17 @@ void test_remove_middle_reconnects(void)
 
 void test_remove_last_truncates(void)
 {
+    Node a, b, c;
+
+    a.value = 10;
+    b.value = 20;
+    c.value = 30;
+
+    link_three(&a, &b, &c);
+    remove_last(&b);
+
+    TEST_ASSERT_EQUAL_PTR(&b, a.nextPtr);
+    TEST_ASSERT_NULL(b.nextPtr);
     // TODO
 }
 
@@ -166,6 +220,17 @@ void test_remove_last_truncates(void)
 
 void test_remove_first_isolates(void)
 {
+    Node a, b, c;
+
+    a.value = 10;
+    b.value = 20;
+    c.value = 30;
+
+    link_three(&a, &b, &c);
+    remove_first(&a);
+
+    TEST_ASSERT_EQUAL_PTR(&c, b.nextPtr);
+    TEST_ASSERT_NULL(a.nextPtr);
     // TODO
 }
 
@@ -180,6 +245,13 @@ void test_remove_first_isolates(void)
 
 void test_swap_ptrs_redirects(void)
 {
+    int x = 10, y = 20;
+    int *xPtr = &x, *yPtr = &y;
+
+    swap_ptrs(&xPtr, &yPtr);
+
+    TEST_ASSERT_EQUAL(x, *yPtr);
+    TEST_ASSERT_EQUAL(y, *xPtr);
     // TODO
 }
 
@@ -195,6 +267,13 @@ void test_swap_ptrs_redirects(void)
 
 void test_swap_ptrs_values_unchanged(void)
 {
+    int x = 10, y = 20;
+    int *xPtr = &x, *yPtr = &y;
+
+    swap_ptrs(&xPtr, &yPtr);
+
+    TEST_ASSERT_EQUAL(10, x);
+    TEST_ASSERT_EQUAL(20, y);
     // TODO
 }
 
@@ -210,6 +289,12 @@ void test_swap_ptrs_values_unchanged(void)
 
 void test_nullify_sets_null(void)
 {
+    int x = 5;
+    int *xPtr = &x;
+
+    nullify(&xPtr);
+
+    TEST_ASSERT_NULL(xPtr);
     // TODO
 }
 
@@ -225,6 +310,12 @@ void test_nullify_sets_null(void)
 
 void test_nullify_value_unchanged(void)
 {
+    int x = 5;
+    int *xPtr = &x;
+
+    nullify(&xPtr);
+
+    TEST_ASSERT_EQUAL(5, x);
     // TODO
 }
 
@@ -240,6 +331,14 @@ void test_nullify_value_unchanged(void)
 
 void test_assign_bytes_first_and_last(void)
 {
+    long long n = 0;
+
+    assign_bytes(&n);
+
+    unsigned char *p = (unsigned char *)&n;
+
+    TEST_ASSERT_EQUAL(1, p[0]);
+    TEST_ASSERT_EQUAL(8, p[7]);
     // TODO
 }
 
@@ -255,6 +354,16 @@ void test_assign_bytes_first_and_last(void)
 
 void test_assign_bytes_all(void)
 {
+    long long x = 0;
+
+    assign_bytes(&x);
+
+    unsigned char *y = (unsigned char *)&x;
+
+    for (int i = 0; i < 8; i++)
+    {
+        TEST_ASSERT_EQUAL(i+1, y[i]);
+    }
     // TODO
 }
 
@@ -270,6 +379,17 @@ void test_assign_bytes_all(void)
 
 void test_sum_chain_basic(void)
 {
+    Node a, b, c;
+
+    a.value = 10;
+    b.value = 20;
+    c.value = 30;
+
+    link_three(&a, &b, &c);
+
+    int sum = sum_chain(&a);
+
+    TEST_ASSERT_EQUAL(a.value+b.value+c.value, sum);
     // TODO
 }
 
@@ -284,6 +404,13 @@ void test_sum_chain_basic(void)
 
 void test_sum_chain_single(void)
 {
+    Node a;
+    a.value = 10;
+    a.nextPtr = NULL;
+
+    int sum = sum_chain(&a);
+
+    TEST_ASSERT_EQUAL(a.value, sum);
     // TODO
 }
 
@@ -297,5 +424,12 @@ void test_sum_chain_single(void)
 
 void test_sum_chain_null(void)
 {
+    int sum = sum_chain(NULL);
+
+    TEST_ASSERT_EQUAL(0, sum);
     // TODO
 }
+
+// char *AUTHOR_NAME       = "Ty Gonder";
+// char *AUTHOR_AUTHORSHIP = "I acknowledge that I have worked on this
+// assignment independently...";
